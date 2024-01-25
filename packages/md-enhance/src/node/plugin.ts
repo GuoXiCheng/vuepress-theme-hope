@@ -291,10 +291,10 @@ export const mdEnhancePlugin =
           addViteSsrExternal(bundlerOptions, app, "@vue/repl");
 
           // hide webpack warnings
-          chainWebpack(bundlerOptions, app, (config) => {
+          chainWebpack(bundlerOptions, app, (config, isServer) => {
             // TODO: Probably need to fix upstream
             config.resolve.set("conditionNames", [
-              "browser",
+              isServer ? "node" : "browser",
               "import",
               "module",
             ]);
